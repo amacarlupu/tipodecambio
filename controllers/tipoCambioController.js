@@ -54,7 +54,10 @@ async function getTipoCambio(fecha) {
 
     let tipoCambio = [];
 
-    const browser = await puppeteer.launch({ headless: true }); // abrir el navegador
+    const browser = await puppeteer.launch({ 
+        headless: true,
+        args:["--no-sandbox"]
+     }); // abrir el navegador
     const page = await browser.newPage(); // crear una nueva pagina
     await page.setDefaultTimeout(0)
 
