@@ -16,7 +16,7 @@ router.get('/dolares/:id', async (req, res)=>{
     const tipoCambio = await getTipoCambio(arregloFechas);
     if(!tipoCambio){
         return res.status(400).json({
-            message:'Tipo de cambio de encontrado'
+            error:'Tipo de cambio no encontrado'
         });
     }
 

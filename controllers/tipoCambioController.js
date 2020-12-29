@@ -52,6 +52,8 @@ function getLast5Days(fecha) {
 
 async function getTipoCambio(fecha) {
 
+    try{
+
     let tipoCambio = [];
 
     const browser = await puppeteer.launch({ 
@@ -67,8 +69,8 @@ async function getTipoCambio(fecha) {
 
         await page.type('#ctl00_cphContent_rdpDate_dateInput', `${fecha[i]}`);
         await page.click('#ctl00_cphContent_btnConsultar');
-        await page.waitForFunction(`document.querySelector("#ctl00_cphContent_lblFecha").innerText.includes("${fecha[i]}")`)
-
+       await page.waitForFunction(`document.querySelector("#ctl00_cphContent_lblFecha").innerText.includes("${fecha[i]}")`)
+       
         console.log('fecha actual: ',fecha[i]);
         const elementos = await page.evaluate(() => {
 
@@ -102,6 +104,9 @@ async function getTipoCambio(fecha) {
         }
     }
     return cambioActual;
+}  catch(e){
+    console.log('No existe el tipo de cambio');
+}
 
 }
 
